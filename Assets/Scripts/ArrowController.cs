@@ -7,6 +7,7 @@ public class ArrowController : MonoBehaviour
 {
     GameObject player;
     public static event Action onScorePlus;
+    public static event Action onScorePlusPlus;
     public static event Action onScoreMinus;
 
     void Start()
@@ -37,11 +38,15 @@ public class ArrowController : MonoBehaviour
         if (d < r1 + r2)
         {
             string objectName = gameObject.name;
-            if (objectName.StartsWith("arrowPrefabP"))
+            if (objectName.StartsWith("PlusItem1"))
             {
                 onScorePlus?.Invoke();
             }
-            else if (objectName.StartsWith("arrowPrefabM"))
+            else if (objectName.StartsWith("PlusItem2"))
+            {
+                onScorePlusPlus?.Invoke();
+            }
+            else if (objectName.StartsWith("MinusItem1"))
             {
                 onScoreMinus?.Invoke();
             }
