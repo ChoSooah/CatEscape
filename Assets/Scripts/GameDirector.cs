@@ -13,7 +13,7 @@ public class GameDirector : MonoBehaviour
     public int sceneNumber = 0; //지금 있는 씬을 체크하는 변수.
     //0: 시작 씬
     //1: 게임 씬
-    //2: 게임 종료 씬
+    //2: 게임 종료 씬 (삭제)
 
     void Awake()
     {
@@ -33,6 +33,7 @@ public class GameDirector : MonoBehaviour
         ArrowController.onScorePlus += AddScore;
         ArrowController.onScorePlusPlus += AddAddScore;
         ArrowController.onScoreMinus += MinusScore;
+        ActiveController.onReset += Reseting;
 
         if (SceneManager.GetActiveScene().name == "StartScene")
         {
@@ -42,10 +43,12 @@ public class GameDirector : MonoBehaviour
         {
             sceneNumber = 1;
         }
+        /*
         else if (SceneManager.GetActiveScene().name == "EndScene")
         {
             sceneNumber = 2;
         }
+        */
         else
         {
             Debug.Log("오류!");
@@ -70,10 +73,12 @@ public class GameDirector : MonoBehaviour
             //TextMeshProUGUI의 UGUI는 UI일 때 붙는 것으로, 이것을 빼면 UI에서는 오류가 난다.
             //.ToString()는 score을 문자열S로 변환하기 위해 사용하는 것으로 그냥 +를 하면 string과 int를 더하는 것이 되어 프로그램이 알아차리지 못함.
         }
+        /*
         else if (sceneNumber == 2 && scoreText != null)
         {
             this.scoreText.GetComponent<TextMeshProUGUI>().text = "최종 점수: " + score.ToString();
         }
+        */
     }
 
     void AddScore()
@@ -94,5 +99,10 @@ public class GameDirector : MonoBehaviour
     void changeTextObject()
     {
         this.scoreText = GameObject.Find("Score");
+    }
+
+    void Reseting()
+    {
+        score = 0;
     }
 }

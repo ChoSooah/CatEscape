@@ -5,7 +5,7 @@ public class SceneChanger : MonoBehaviour
 {
     void Start()
     {
-        TimeController.onEnd += ChangeSceneForEnd;
+
     }
 
     void Update()
@@ -13,11 +13,13 @@ public class SceneChanger : MonoBehaviour
 
     }
 
-    public void ChangeSceneForEnd()
-    {
-        SceneManager.LoadScene("EndScene");
-        GameDirector.Instance.sceneNumber = 2;
-    }
+    /*
+        public void ChangeSceneForEnd()
+        {
+            SceneManager.LoadScene("EndScene");
+            GameDirector.Instance.sceneNumber = 2;
+        }
+    */
 
     public void ChangeSceneForGame()
     {

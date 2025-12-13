@@ -9,10 +9,12 @@ public class ArrowController : MonoBehaviour
     public static event Action onScorePlus;
     public static event Action onScorePlusPlus;
     public static event Action onScoreMinus;
+    public static event Action onEndDis;
 
     void Start()
     {
         this.player = GameObject.Find("player");
+        TimeController.onEnd += DisOdj;
     }
 
     void Update()
@@ -26,32 +28,49 @@ public class ArrowController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //충돌판정
-        Vector2 p1 = transform.position; //화살의 중심 좌표
-        Vector2 p2 = this.player.transform.position; //플레이어의 중심 좌표
-
-        Vector2 dir = p1 - p2;
-        float d = dir.magnitude; //magnitude는 벡터의 크기 혹은 길이를 구할 때 사용된다.
-        float r1 = 0.5f; //화살의 반지름
-        float r2 = 1.0f; //플레이어의 반지름
-
-        if (d < r1 + r2)
+        if (player != null)
         {
-            string objectName = gameObject.name;
-            if (objectName.StartsWith("PlusItem1"))
+            //충돌판정
+            Vector2 p1 = transform.position; //화살의 중심 좌표
+            Vector2 p2 = this.player.transform.position; //플레이어의 중심 좌표
+
+            Vector2 dir = p1 - p2;
+            float d = dir.magnitude; //magnitude는 벡터의 크기 혹은 길이를 구할 때 사용된다.
+            float r1 = 0.5f; //화살의 반지름
+            float r2 = 1.0f; //플레이어의 반지름
+
+            if (d < r1 + r2)
             {
-                onScorePlus?.Invoke();
+                string objectName = gameObject.name;
+                if (objectName.StartsWith("PlusItem1"))
+                {
+                    onScorePlus?.Invoke();
+                }
+                else if (objectName.StartsWith("PlusItem2"))
+                {
+                    onScorePlusPlus?.Invoke();
+                }
+                else if (objectName.StartsWith("MinusItem1"))
+                {
+                    onScoreMinus?.Invoke();
+                }
+                //충돌한 경우는 화살을 지운다.
+                Destroy(gameObject);
             }
-            else if (objectName.StartsWith("PlusItem2"))
-            {
-                onScorePlusPlus?.Invoke();
-            }
-            else if (objectName.StartsWith("MinusItem1"))
-            {
-                onScoreMinus?.Invoke();
-            }
-            //충돌한 경우는 화살을 지운다.
-            Destroy(gameObject);
         }
+    }
+
+    void DisOdj()
+    {
+        if (this == null || gameObject == null)
+        {
+            return;
+        }
+        else
+        {
+            Destroy(gameObject);
+            onEndDis?.Invoke();
+        }
+        Debug.Log("화살 삭제됨");
     }
 }

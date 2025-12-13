@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class TimeController : MonoBehaviour
 {
+    float startTime = 30.0f;
     float remTime; //* 남은 시간
     public float maxTime; //* 시간 최대치
     public static event Action onEnd;
@@ -12,7 +13,8 @@ public class TimeController : MonoBehaviour
 
     void Start()
     {
-        ResetTime(30.0f);
+        ResetTime(startTime);
+        ActiveController.onReset += Reseting;
     }
 
     void Update()
@@ -34,5 +36,10 @@ public class TimeController : MonoBehaviour
     void SetnowTime()
     {
         TimeSlider.value = remTime / maxTime;
+    }
+
+    void Reseting()
+    {
+        ResetTime(startTime);
     }
 }
