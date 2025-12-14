@@ -1884,6 +1884,7 @@ MonoBehaviour:
   PlusItem1: {fileID: 1807826236194316505, guid: 5fe105c0d20c13b43b2cbc7ac7517469, type: 3}
   PlusItem2: {fileID: 2119322054505918341, guid: d8bf3117f01474144a591f22051ab0ee, type: 3}
   MinusItem1: {fileID: 7599895383926869092, guid: 323e2019687dfae4ba04face3451bd90, type: 3}
+  MinusItem2: {fileID: 2339877698880731621, guid: 13a21f1cf187b6c4281c33fb0d9278ac, type: 3}
   isMake: 1
 --- !u!4 &1388949014
 Transform:

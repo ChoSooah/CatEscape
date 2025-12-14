@@ -9,6 +9,7 @@ public class ArrowController : MonoBehaviour
     public static event Action onScorePlus;
     public static event Action onScorePlusPlus;
     public static event Action onScoreMinus;
+    public static event Action onScoreMinusMinus;
     public static event Action onEndDis;
 
     void Start()
@@ -53,6 +54,10 @@ public class ArrowController : MonoBehaviour
                 else if (objectName.StartsWith("MinusItem1"))
                 {
                     onScoreMinus?.Invoke();
+                }
+                else if (objectName.StartsWith("MinusItem2"))
+                {
+                    onScoreMinusMinus?.Invoke();
                 }
                 //충돌한 경우는 화살을 지운다.
                 Destroy(gameObject);

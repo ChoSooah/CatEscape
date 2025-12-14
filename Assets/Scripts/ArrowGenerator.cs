@@ -8,6 +8,7 @@ public class ArrowGenerator : MonoBehaviour
     [SerializeField] private GameObject PlusItem1;
     [SerializeField] private GameObject PlusItem2;
     [SerializeField] private GameObject MinusItem1;
+    [SerializeField] private GameObject MinusItem2;
 
     public bool isMake = true;
     float span = 1.0f;
@@ -28,7 +29,7 @@ public class ArrowGenerator : MonoBehaviour
             {
                 this.delta = 0;
                 int px = UnityEngine.Random.Range(-6, 7);
-                int randomNum = UnityEngine.Random.Range(0, 3); //0 이상 3 미만 정수
+                int randomNum = UnityEngine.Random.Range(0, 4); //0 이상 4 미만 정수
 
                 switch (randomNum)
                 {
@@ -43,6 +44,10 @@ public class ArrowGenerator : MonoBehaviour
                     case 2:
                         GameObject minus1 = Instantiate(MinusItem1);
                         minus1.transform.position = new Vector3(px, 7, 0);
+                        break;
+                    case 3:
+                        GameObject minus2 = Instantiate(MinusItem2);
+                        minus2.transform.position = new Vector3(px, 7, 0);
                         break;
                     default:
                         Debug.Log("에러!");

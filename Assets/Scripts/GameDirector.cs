@@ -33,6 +33,7 @@ public class GameDirector : MonoBehaviour
         ArrowController.onScorePlus += AddScore;
         ArrowController.onScorePlusPlus += AddAddScore;
         ArrowController.onScoreMinus += MinusScore;
+        ArrowController.onScoreMinusMinus += MinusMinusScore;
         ActiveController.onReset += Reseting;
 
         if (SceneManager.GetActiveScene().name == "StartScene")
@@ -94,6 +95,11 @@ public class GameDirector : MonoBehaviour
     void MinusScore()
     {
         score -= 100;
+    }
+
+    void MinusMinusScore()
+    {
+        score -= 200;
     }
 
     void changeTextObject()
